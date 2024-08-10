@@ -60,7 +60,9 @@
   transition: color 0.1s, background-color 0.1s;
 }
 
-.sidebar footer a:hover {
+.sidebar footer a:hover,
+.sidebar footer a:focus {
   background: var(--green-500);
   color: var(--white);
+  box-shadow: none;
 }
