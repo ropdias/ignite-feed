@@ -4,7 +4,7 @@ export function Avatar({
   hasBorder = true,
   src,
 }: {
-  hasBorder: boolean
+  hasBorder?: boolean
   src: string
 }) {
   return (
