@@ -3,7 +3,11 @@ import styles from './Comment.module.css'
 import { ThumbsUp, Trash } from 'phosphor-react'
 import { Avatar } from './Avatar'
 
-export function Comment({ content }) {
+interface CommentProps {
+  content: string
+}
+
+export function Comment({ content }: CommentProps) {
   return (
     <div className={styles.comment}>
       <Avatar hasBorder={false} src="https://github.com/ropdias.png" />
