@@ -23,7 +23,8 @@ interface PostProps {
 }
 
 export function Post({ author, publishedAt, content }: PostProps) {
-  const [comments, setComments] = useState([1, 2])
+  const [comments, setComments] = useState(['Post muito bacana, hein?!'])
+  const [newCommentText, setNewCommentText] = useState('')
 
   const publishedDateFormatted = format(
     publishedAt,
@@ -41,7 +42,14 @@ export function Post({ author, publishedAt, content }: PostProps) {
   function handleCreateNewComment(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    setComments((prevComments) => [...prevComments, prevComments.length + 1])
+    setComments((prevComments) => [...prevComments, newCommentText])
+    setNewCommentText('')
+  }
+
+  function handleNewCommentChange(
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+  ) {
+    setNewCommentText(event.target.value)
   }
 
   return (
@@ -81,7 +89,12 @@ export function Post({ author, publishedAt, content }: PostProps) {
       <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
 
-        <textarea placeholder="Deixe um comentário" />
+        <textarea
+          name="comment"
+          placeholder="Deixe um comentário"
+          value={newCommentText}
+          onChange={handleNewCommentChange}
+        />
 
         <footer>
           <button type="submit">Publicar</button>
@@ -90,7 +103,7 @@ export function Post({ author, publishedAt, content }: PostProps) {
 
       <div className={styles.commentList}>
         {comments.map((comment, index) => {
-          return <Comment key={index} />
+          return <Comment content={comment} key={index} />
         })}
       </div>
     </article>
