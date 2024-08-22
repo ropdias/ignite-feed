@@ -65,9 +65,14 @@
   align-items: center;
 
   border-radius: 2px;
+  transition: color 0.1s;
 }
 
 .commentBox footer button:hover {
+  color: var(--gray-100);
+}
+
+.commentBox footer button:active {
   color: var(--green-300);
 }
 
