@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react'
 import { format, formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { Avatar } from './Avatar'
@@ -39,23 +39,19 @@ export function Post({ author, publishedAt, content }: PostProps) {
     addSuffix: true,
   })
 
-  function handleCreateNewComment(event: React.FormEvent<HTMLFormElement>) {
+  function handleCreateNewComment(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
     setComments((prevComments) => [...prevComments, newCommentText])
     setNewCommentText('')
   }
 
-  function handleNewCommentChange(
-    event: React.ChangeEvent<HTMLTextAreaElement>,
-  ) {
+  function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity('')
     setNewCommentText(event.target.value)
   }
 
-  function handleNewCommentInvalid(
-    event: React.InvalidEvent<HTMLTextAreaElement>,
-  ) {
+  function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity('Esse campo é obrigatório!')
   }
 
